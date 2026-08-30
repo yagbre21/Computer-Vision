@@ -8,7 +8,7 @@ Instructor: Dr. Stephen Elston, PhD
 
 ## Abstract
 
-This project develops an image classification system for identifying 35 species of wild edible plants from photographs. Given the safety-critical nature of the task - misidentification of wild plants can result in serious illness or death - the system prioritizes classification accuracy. Two convolutional neural network architectures, EfficientNetB0 and MobileNet, are evaluated using transfer learning from ImageNet. EfficientNetB0 achieves 89.7% test accuracy with 89.9% precision and 89.7% recall, significantly outperforming MobileNet (79.2% accuracy) on the same dataset and training pipeline. Supplementary fine-tuning of EfficientNetB0 further improved accuracy to 91.7%.
+This project develops an image classification system for identifying 35 species of wild edible plants from photographs. Given the safety-critical nature of the task - misidentification of wild plants can result in serious illness or death - the system prioritizes classification accuracy. Two convolutional neural network architectures, EfficientNetB0 and MobileNet, are evaluated using transfer learning from ImageNet. EfficientNetB0 achieves 89.7% test accuracy with 89.9% precision and 89.7% recall, significantly outperforming MobileNet (79.2% accuracy) on the same dataset and training pipeline.
 
 ## 1. Introduction
 
@@ -71,11 +71,11 @@ MobileNet showed signs of overfitting in later epochs, with training accuracy re
 
 ### Supplementary Fine-Tuning
 
-As an additional experiment, the top 20 layers of EfficientNetB0 were unfrozen (excluding BatchNorm layers) and retrained with a reduced learning rate (1e-5). This fine-tuning phase improved test accuracy to **91.7%** (test loss: 0.288), demonstrating the benefit of allowing deeper feature adaptation to the plant domain.
+As an additional experiment, the top 20 layers of EfficientNetB0 were unfrozen (excluding BatchNorm layers) and retrained with a reduced learning rate (1e-5) to allow deeper feature adaptation to the plant domain. The primary results reported above are from the transfer learning evaluation.
 
 ## 5. Conclusion
 
-EfficientNetB0 demonstrates strong performance on multi-class plant identification, achieving 89.7% accuracy via transfer learning and 91.7% after supplementary fine-tuning across 35 species. The compound scaling approach provides meaningful accuracy gains over MobileNet's depthwise separable architecture for this task. Both models benefit substantially from ImageNet transfer learning, converging to useful accuracy levels within the first 10 epochs.
+EfficientNetB0 demonstrates strong performance on multi-class plant identification, achieving 89.7% accuracy via transfer learning across 35 species. The compound scaling approach provides meaningful accuracy gains over MobileNet's depthwise separable architecture for this task. Both models benefit substantially from ImageNet transfer learning, converging to useful accuracy levels within the first 10 epochs.
 
 For deployment in a field-use application, EfficientNetB0 offers the better accuracy-to-compute ratio for this classification task. Future work could explore fine-grained augmentation strategies, ensemble methods, or larger EfficientNet variants (B1-B7) to push accuracy closer to the threshold needed for safety-critical deployment.
 
